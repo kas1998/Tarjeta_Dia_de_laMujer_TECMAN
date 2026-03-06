@@ -42,9 +42,9 @@
     .contenedor {
       background: rgba(30, 20, 40, 0.7);
       backdrop-filter: blur(8px);
-      border: 4px solid #aa80ff; /* Morado */
+      border: 4px solid #aa80ff;
       border-radius: 40px;
-      box-shadow: 0 0 30px #aa80ff, 0 0 15px #88b388 inset; /* Verde */
+      box-shadow: 0 0 30px #aa80ff, 0 0 15px #88b388 inset;
       padding: 40px;
       width: 85%;
       max-width: 1000px;
@@ -58,7 +58,6 @@
       z-index: 10;
     }
 
-    /* Estilo para el logo de Tecman */
     .logo-tecman {
       max-width: 200px;
       margin-bottom: 20px;
@@ -76,7 +75,7 @@
     }
 
     h1 {
-      color: #d4af37; /* Dorado para destacar */
+      color: #d4af37;
       font-size: 2.5rem;
       margin-bottom: 20px;
       text-align: center;
@@ -86,7 +85,7 @@
     }
 
     .sub-lema {
-      color: #b8e0b8; /* Verde claro */
+      color: #b8e0b8;
       font-size: 1.4rem;
       margin-bottom: 30px;
       font-weight: 300;
@@ -266,6 +265,34 @@
       max-width: 700px;
     }
 
+    #pantallaMusica .mensaje-imagen {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 30px;
+      border: 3px solid #aa80ff;
+      max-width: 600px;
+      margin: 20px;
+    }
+
+    #pantallaMusica .mensaje-imagen p {
+      font-size: 2.5rem;
+      margin: 20px 0;
+      line-height: 1.4;
+    }
+
+    #pantallaMusica .mensaje-imagen p:first-child {
+      color: #88b388;
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    #pantallaMusica .mensaje-imagen p:last-child {
+      color: #d4af37;
+      font-size: 2rem;
+      margin-top: 30px;
+    }
+
     #pantallaMusica button {
       font-size: 1.8rem;
       padding: 20px 50px;
@@ -303,6 +330,7 @@
       button { font-size: 1.2rem; padding: 14px 25px; }
       .tarjeta { flex-direction: column; }
       .imagen-regalo, #codigoContenedor { max-width: 90%; }
+      #pantallaMusica .mensaje-imagen p { font-size: 1.8rem; }
     }
   </style>
 </head>
@@ -310,15 +338,19 @@
 
   <!-- Pantalla inicial para activar música -->
   <div id="pantallaMusica">
-    <p>💜🌸💚 ¡Hoy es nuestro día! 💚🌸💜</p>
-    <p>Activa la música para comenzar la celebración</p>
-    <button onclick="activarMusica()">🎵 Activar Música 🎵</button>
+    <div class="mensaje-imagen">
+      <p>💜🌸💚</p>
+      <p>Activar</p>
+      <p>No permitas que nadie<br>apague tu luz</p>
+      <p>Día de la mujer</p>
+      <p>💜🌸💚</p>
+    </div>
+    <button onclick="activarMusica()">🎵 Activar Música y Continuar 🎵</button>
   </div>
 
   <div class="contenedor" style="display:none;" id="contenedorPrincipal">
     <div class="seccion-inicial" id="seccionInicial">
-      <!-- Logo de Tecman (reemplaza con la ruta de tu logo) -->
-      <img src="logo-tecman.png" alt="Tecman Logo" class="logo-tecman" id="logo-tecman">
+      <img src="logo-tecman.png" alt="Tecman Logo" class="logo-tecman" id="logo-tecman" onerror="this.src='https://via.placeholder.com/200x100/aa80ff/ffffff?text=TECMAN'">
       <h1 id="saludo">💜 MUJERES TECMAN 💚</h1>
       <div class="sub-lema">"Innovación, talento y fuerza femenina"</div>
       <button id="btnReclamar">🌈 Recibir sorpresa 🌈</button>
@@ -331,7 +363,6 @@
 
     <div class="seccion-regalo" id="regalo">
       <div class="tarjeta">
-        <!-- Imagen alusiva al día de la mujer (puedes cambiarla) -->
         <img src="regalo-mujer.jpg" alt="Detalle Día de la Mujer" class="imagen-regalo" onerror="this.src='https://via.placeholder.com/500x400/aa80ff/ffffff?text=Para+ti+heroina+Tecman'">
         <div id="codigoContenedor">
           <p>✨ Código especial para ti ✨</p>
@@ -344,71 +375,79 @@
   </div>
 
   <div id="videoModal">
-    <video id="videoMujer" preload="auto" playsinline muted>
-      <!-- Video alusivo al día de la mujer (cambia por tu archivo) -->
+    <video id="videoMujer" preload="auto" playsinline>
       <source src="video-mujeres.mp4" type="video/mp4" />
       <source src="https://assets.mixkit.co/active_storage/preview/mixkit-women-celebrating-international-womens-day-34495-large.mp4" type="video/mp4">
       Tu navegador no soporta video.
     </video>
   </div>
 
-  <audio id="musica" loop>
-    <!-- Música alegre y femenina (puedes cambiarla) -->
+  <audio id="musica" loop preload="auto">
     <source src="musica-mujer.mp3" type="audio/mpeg" />
     <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
   </audio>
 
-  <button id="toggleMusica" onclick="toggleMusica()">⏸️</button>
+  <button id="toggleMusica" onclick="toggleMusica()">⏸️ Silenciar</button>
 
   <script>
-    (function() {
-      const musica = document.getElementById("musica");
-      musica.volume = 0.4;
+    // Variables globales
+    const musica = document.getElementById("musica");
+    musica.volume = 0.4;
 
-      const pantallaMusica = document.getElementById("pantallaMusica");
-      const contenedorPrincipal = document.getElementById("contenedorPrincipal");
-      const toggleMusicaBtn = document.getElementById("toggleMusica");
+    const pantallaMusica = document.getElementById("pantallaMusica");
+    const contenedorPrincipal = document.getElementById("contenedorPrincipal");
+    const toggleMusicaBtn = document.getElementById("toggleMusica");
+    
+    let musicaActiva = false;
 
-      // Crear flores flotantes (versión femenina de los corazones)
-      function crearFlor() {
-        const flor = document.createElement('div');
-        flor.classList.add('flor');
-        flor.innerHTML = ['🌸', '🌼', '🌷', '🌺', '💜', '💚'][Math.floor(Math.random() * 6)];
-        flor.style.left = Math.random() * 100 + 'vw';
-        flor.style.animationDuration = Math.random() * 8 + 5 + 's'; // entre 5 y 13s
-        flor.style.fontSize = Math.random() * 30 + 20 + 'px';
-        document.body.appendChild(flor);
+    // Crear flores flotantes
+    function crearFlor() {
+      const flor = document.createElement('div');
+      flor.classList.add('flor');
+      flor.innerHTML = ['🌸', '🌼', '🌷', '🌺', '💜', '💚'][Math.floor(Math.random() * 6)];
+      flor.style.left = Math.random() * 100 + 'vw';
+      flor.style.animationDuration = Math.random() * 8 + 5 + 's';
+      flor.style.fontSize = Math.random() * 30 + 20 + 'px';
+      document.body.appendChild(flor);
 
-        setTimeout(() => {
-          flor.remove();
-        }, 13000);
-      }
+      setTimeout(() => {
+        flor.remove();
+      }, 13000);
+    }
 
-      setInterval(crearFlor, 500);
+    setInterval(crearFlor, 500);
 
-      // Manejo de música
-      window.activarMusica = function() {
-        musica.play().then(() => {
+    // Función para activar música y mostrar contenido
+    window.activarMusica = function() {
+      musica.play()
+        .then(() => {
           musicaActiva = true;
           pantallaMusica.style.display = "none";
           contenedorPrincipal.style.display = "flex";
           toggleMusicaBtn.style.display = "block";
-          toggleMusicaBtn.textContent = "⏸️ Silenciar";
-        }).catch((error) => {
-          alert("No se pudo reproducir la música automáticamente. Por favor, haz clic de nuevo.");
+        })
+        .catch((error) => {
+          console.log("Error al reproducir música:", error);
+          // Si hay error, igual mostramos el contenido
+          pantallaMusica.style.display = "none";
+          contenedorPrincipal.style.display = "flex";
+          toggleMusicaBtn.style.display = "block";
         });
-      };
+    };
 
-      window.toggleMusica = function() {
-        if (musica.paused) {
-          musica.play();
-          toggleMusicaBtn.textContent = "⏸️ Silenciar";
-        } else {
-          musica.pause();
-          toggleMusicaBtn.textContent = "▶️ Activar";
-        }
-      };
+    // Función para toggle música
+    window.toggleMusica = function() {
+      if (musica.paused) {
+        musica.play();
+        toggleMusicaBtn.innerHTML = "⏸️ Silenciar";
+      } else {
+        musica.pause();
+        toggleMusicaBtn.innerHTML = "▶️ Activar";
+      }
+    };
 
+    // Eventos cuando carga la página
+    document.addEventListener('DOMContentLoaded', function() {
       const btnReclamar = document.getElementById("btnReclamar");
       const seccionInicial = document.getElementById("seccionInicial");
       const mensaje = document.getElementById("mensaje");
@@ -472,13 +511,7 @@
           alert("💜 ¡Felicidades! Has canjeado tu detalle. Eres increíble. 💚");
         });
       };
-
-      // Precarga del logo por si acaso (opcional)
-      const logo = document.getElementById('logo-tecman');
-      logo.onerror = function() {
-        this.src = 'https://via.placeholder.com/200x100/aa80ff/ffffff?text=TECMAN';
-      };
-    })();
+    });
   </script>
 </body>
 </html>
