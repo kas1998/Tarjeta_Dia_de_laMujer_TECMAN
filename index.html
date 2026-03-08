@@ -116,6 +116,7 @@
 
     #mensaje {
       margin-top: 30px;
+      width: 100%;
     }
 
     #mensaje p {
@@ -127,9 +128,15 @@
       border-radius: 60px;
       border-left: 8px solid #88b388;
       border-right: 8px solid #aa80ff;
+      min-height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.5s ease;
     }
 
-    .seccion-regalo {
+    /* Sección de foto de Tecman */
+    .seccion-foto-tecman {
       display: none;
       justify-content: center;
       align-items: center;
@@ -140,7 +147,7 @@
       flex-wrap: wrap;
     }
 
-    .tarjeta {
+    .tarjeta-foto {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -154,22 +161,21 @@
       100% { transform: rotateY(0deg); opacity: 1; filter: blur(0); }
     }
 
-    .imagen-regalo {
+    .imagen-tecman {
       max-height: 400px;
-      max-width: 45%;
+      max-width: 100%;
       border: 6px solid #d4af37;
       border-radius: 40px;
       box-shadow: 0 0 30px #aa80ff, 0 0 20px #88b388;
       object-fit: cover;
     }
 
-    #codigoContenedor {
-      max-width: 45%;
-      min-width: 300px;
+    #mensajeFinal {
+      max-width: 500px;
       background: rgba(20, 10, 30, 0.8);
       backdrop-filter: blur(5px);
       border-radius: 40px;
-      padding: 30px 25px;
+      padding: 40px 30px;
       box-shadow: 0 0 25px #b8e0b8;
       display: flex;
       flex-direction: column;
@@ -177,30 +183,22 @@
       border: 2px solid #d4af37;
     }
 
-    #codigoContenedor p {
-      font-size: 1.4rem;
+    #mensajeFinal p {
+      font-size: 2.2rem;
       margin-bottom: 25px;
       color: #f5e6d3;
       text-align: center;
-      font-weight: 300;
-    }
-
-    #codigoKey {
-      font-family: 'Poppins', sans-serif;
-      font-size: 2.2rem;
       font-weight: 600;
-      padding: 15px;
-      border-radius: 60px;
-      border: 3px solid #aa80ff;
-      width: 100%;
-      max-width: 350px;
-      text-align: center;
-      color: #6a0dad;
-      background: #f0e6ff;
-      margin-bottom: 20px;
-      letter-spacing: 3px;
+      line-height: 1.4;
     }
 
+    #mensajeFinal p:last-child {
+      color: #d4af37;
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    /* Video Modal */
     #videoModal {
       display: none;
       position: fixed;
@@ -212,12 +210,51 @@
       backdrop-filter: blur(5px);
     }
 
-    #videoModal video {
+    .video-contenedor {
+      position: relative;
       max-width: 85%;
       max-height: 80%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    #videoModal video {
+      max-width: 100%;
+      max-height: 70vh;
       object-fit: contain;
       border-radius: 40px;
       box-shadow: 0 0 40px #d4af37, 0 0 30px #aa80ff;
+    }
+
+    #btnContinuarVideo {
+      background: linear-gradient(145deg, #88b388, #2e5c2e);
+      color: white;
+      border: 3px solid #d4af37;
+      padding: 15px 40px;
+      font-size: 1.5rem;
+      border-radius: 60px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 0 #1a3b1a;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: aparecerBoton 0.5s ease forwards 0.5s;
+    }
+
+    @keyframes aparecerBoton {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    #btnContinuarVideo:hover {
+      background: linear-gradient(145deg, #9ac79a, #3f7a3f);
+      transform: translateY(-2px);
+      box-shadow: 0 7px 0 #1a3b1a;
     }
 
     .flor {
@@ -255,16 +292,6 @@
       gap: 25px;
     }
 
-    #pantallaMusica p {
-      color: #d4af37;
-      font-family: 'Poppins', sans-serif;
-      text-align: center;
-      margin: 20px;
-      font-size: 2rem;
-      font-weight: 600;
-      max-width: 700px;
-    }
-
     #pantallaMusica .mensaje-imagen {
       background: rgba(255, 255, 255, 0.1);
       padding: 30px;
@@ -275,9 +302,13 @@
     }
 
     #pantallaMusica .mensaje-imagen p {
-      font-size: 2.5rem;
-      margin: 20px 0;
-      line-height: 1.4;
+      color: #d4af37;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      margin: 20px;
+      font-size: 2rem;
+      font-weight: 600;
+      max-width: 700px;
     }
 
     #pantallaMusica .mensaje-imagen p:first-child {
@@ -328,9 +359,10 @@
       h1 { font-size: 1.8rem; }
       .sub-lema { font-size: 1.2rem; }
       button { font-size: 1.2rem; padding: 14px 25px; }
-      .tarjeta { flex-direction: column; }
-      .imagen-regalo, #codigoContenedor { max-width: 90%; }
+      #mensaje p { font-size: 1.4rem; }
+      #mensajeFinal p { font-size: 1.8rem; }
       #pantallaMusica .mensaje-imagen p { font-size: 1.8rem; }
+      #btnContinuarVideo { font-size: 1.2rem; padding: 12px 30px; }
     }
   </style>
 </head>
@@ -346,6 +378,9 @@
       <p>💜🌸💚</p>
     </div>
     <button onclick="activarMusica()">🎵 Activar Música y Continuar 🎵</button>
+    
+    <!-- INSTRUCCIÓN: Para cambiar la música, edita la línea 352 -->
+    <p style="color: #88b388; font-size: 1rem; margin-top: 20px; opacity: 0.7;">🎵 Usando: musica-tc.mp3</p>
   </div>
 
   <div class="contenedor" style="display:none;" id="contenedorPrincipal">
@@ -357,48 +392,82 @@
     </div>
 
     <div id="mensaje" style="display: none;">
-      <p>"Gracias por ser parte fundamental de Tecman. Su dedicación y creatividad construyen nuestro futuro. 💜💚"</p>
+      <p id="fraseDinamica">"Gracias por ser parte fundamental de Tecman. Su dedicación y creatividad construyen nuestro futuro. 💜💚"</p>
       <button id="btnMostrarRegalo">🌸 Descubrir detalle 🌸</button>
     </div>
 
-    <div class="seccion-regalo" id="regalo">
-      <div class="tarjeta">
-        <img src="regalo-mujer.jpg" alt="Detalle Día de la Mujer" class="imagen-regalo" onerror="this.src='https://via.placeholder.com/500x400/aa80ff/ffffff?text=Para+ti+heroina+Tecman'">
-        <div id="codigoContenedor">
-          <p>✨ Código especial para ti ✨</p>
-          <input type="text" value="TECMAN-8M-💜💚" id="codigoKey" readonly />
-          <button onclick="copiarCodigo()">📋 Copiar código</button>
-          <p style="font-size: 1rem; margin-top: 20px;">(Canjeable por un abrazo virtual y un merecido descanso)</p>
+    <!-- Sección: Foto de Tecman y agradecimiento -->
+    <div class="seccion-foto-tecman" id="fotoTecman">
+      <div class="tarjeta-foto">
+        <img src="TECMAN-FOTO.jpg" alt="Mujeres Tecman" class="imagen-tecman" id="fotoTecmanImg" onerror="this.src='https://via.placeholder.com/600x400/aa80ff/ffffff?text=MUJERES+TECMAN'">
+        <div id="mensajeFinal">
+          <p>🌸💜🌸</p>
+          <p>GRACIAS</p>
+          <p>a todas las mujeres<br>de Tecman</p>
+          <p>por su talento,<br>dedicación y fuerza</p>
+          <p>💚💜💚</p>
         </div>
       </div>
     </div>
   </div>
 
   <div id="videoModal">
-    <video id="videoMujer" preload="auto" playsinline>
-      <source src="video-mujeres.mp4" type="video/mp4" />
-      <source src="https://assets.mixkit.co/active_storage/preview/mixkit-women-celebrating-international-womens-day-34495-large.mp4" type="video/mp4">
-      Tu navegador no soporta video.
-    </video>
+    <div class="video-contenedor">
+      <video id="videoMujer" preload="auto" playsinline>
+        <source src="video-mujeres.mp4" type="video/mp4" />
+        <source src="https://assets.mixkit.co/active_storage/preview/mixkit-women-celebrating-international-womens-day-34495-large.mp4" type="video/mp4">
+        Tu navegador no soporta video.
+      </video>
+      <button id="btnContinuarVideo">🌸 Continuar 🌸</button>
+    </div>
   </div>
 
+  <!-- ===== CONFIGURACIÓN DE MÚSICA ===== -->
+  <!-- INSTRUCCIÓN: Cambia "musica-tc.mp3" por el nombre de tu archivo de música -->
+  <!-- Puedes usar cualquier formato: .mp3, .wav, .ogg, etc. -->
   <audio id="musica" loop preload="auto">
-    <source src="musica-mujer.mp3" type="audio/mpeg" />
+    <!-- Coloca aquí el nombre de tu archivo de música -->
+    <source src="musica-tc.mp3" type="audio/mpeg" />
+    <!-- Fallback por si no encuentra el archivo -->
     <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio.
   </audio>
+  <!-- ================================== -->
 
   <button id="toggleMusica" onclick="toggleMusica()">⏸️ Silenciar</button>
 
   <script>
+    // ===== CONFIGURACIÓN DE MÚSICA =====
+    // Puedes ajustar el volumen aquí (0.0 a 1.0)
+    const VOLUMEN_MUSICA = 0.4; // Cambia este valor para subir/bajar el volumen
+    
     // Variables globales
     const musica = document.getElementById("musica");
-    musica.volume = 0.4;
+    musica.volume = VOLUMEN_MUSICA;
 
     const pantallaMusica = document.getElementById("pantallaMusica");
     const contenedorPrincipal = document.getElementById("contenedorPrincipal");
     const toggleMusicaBtn = document.getElementById("toggleMusica");
     
     let musicaActiva = false;
+    let videoVisto = false;
+    let indiceFrase = 0;
+
+    // FRASES DINÁMICAS para el Día de la Mujer en Tecman
+    const frasesMujerTecman = [
+      "💜 Mujeres Tecman: el motor que impulsa nuestra innovación 💚",
+      "🌸 Gracias por iluminar cada proyecto con su talento único 🌸",
+      "💚 Su fuerza y dedicación construyen el futuro de Tecman 💜",
+      "🌼 Cada mujer en Tecman es una líder, una creadora, una inspiración 🌼",
+      "💜 Detrás de cada éxito de Tecman, hay una mujer excepcional 💚",
+      "🌸 Porque sin ustedes, Tecman no sería lo que es hoy 🌸",
+      "💚 Gracias por romper barreras y construir sueños en Tecman 💜",
+      "🌺 Su pasión transforma ideas en realidades extraordinarias 🌺",
+      "💜 Mujeres que inspiran, equipos que triunfan. ¡Gracias Tecman! 💚",
+      "🌸 El talento femenino de Tecman merece todos los reconocimientos 🌸",
+      "💚 Gracias por ser el alma y la fuerza de nuestra empresa 💜",
+      "🌼 Cada logro de Tecman lleva su sello, su esfuerzo, su corazón 🌼"
+    ];
 
     // Crear flores flotantes
     function crearFlor() {
@@ -425,6 +494,7 @@
           pantallaMusica.style.display = "none";
           contenedorPrincipal.style.display = "flex";
           toggleMusicaBtn.style.display = "block";
+          console.log("🎵 Música activada: musica-tc.mp3");
         })
         .catch((error) => {
           console.log("Error al reproducir música:", error);
@@ -432,6 +502,9 @@
           pantallaMusica.style.display = "none";
           contenedorPrincipal.style.display = "flex";
           toggleMusicaBtn.style.display = "block";
+          
+          // Mostrar mensaje de error amigable
+          alert("Nota: No se pudo reproducir la música automáticamente. Puedes hacer clic en el botón de música para activarla manualmente.");
         });
     };
 
@@ -451,66 +524,78 @@
       const btnReclamar = document.getElementById("btnReclamar");
       const seccionInicial = document.getElementById("seccionInicial");
       const mensaje = document.getElementById("mensaje");
+      const fraseDinamica = document.getElementById("fraseDinamica");
       const btnMostrarRegalo = document.getElementById("btnMostrarRegalo");
-      const regalo = document.getElementById("regalo");
+      const fotoTecman = document.getElementById("fotoTecman");
       const videoModal = document.getElementById("videoModal");
       const videoMujer = document.getElementById("videoMujer");
-
-      let intentos = 0;
-      const frasesBroma = [
-        "💜 ¡Casi! Un poco más de paciencia 💚",
-        "🌸 Tú puedes, mujer maravilla 🌸",
-        "🌼 Las grandes cosas toman tiempo 🌼",
-        "💚 Último clip y el regalo es tuyo 💜",
-      ];
+      const btnContinuarVideo = document.getElementById("btnContinuarVideo");
 
       btnReclamar.addEventListener("click", () => {
         seccionInicial.style.display = "none";
         mensaje.style.display = "block";
+        // Mostrar primera frase
+        fraseDinamica.textContent = frasesMujerTecman[0];
+        indiceFrase = 1;
       });
 
       btnMostrarRegalo.addEventListener("click", () => {
-        if (intentos === 0) {
+        if (!videoVisto) {
+          // Mostrar video por primera vez
           videoModal.style.display = "flex";
           videoMujer.pause();
           videoMujer.currentTime = 0;
           videoMujer.play().catch(e => console.log("Autoplay bloqueado:", e));
-
-          videoMujer.onended = () => {
-            videoModal.style.display = "none";
-            mostrarBromaORegalo();
-          };
         } else {
-          mostrarBromaORegalo();
+          // Si ya vieron el video, mostrar siguiente frase o foto final
+          if (indiceFrase < frasesMujerTecman.length) {
+            fraseDinamica.textContent = frasesMujerTecman[indiceFrase];
+            indiceFrase++;
+          } else {
+            // Si ya no hay más frases, mostrar la foto de Tecman
+            mensaje.style.display = "none";
+            fotoTecman.style.display = "flex";
+          }
         }
       });
 
+      // Botón para continuar después del video
+      btnContinuarVideo.addEventListener("click", () => {
+        videoModal.style.display = "none";
+        videoMujer.pause();
+        videoVisto = true;
+        
+        // Mostrar siguiente frase
+        if (indiceFrase < frasesMujerTecman.length) {
+          fraseDinamica.textContent = frasesMujerTecman[indiceFrase];
+          indiceFrase++;
+        }
+      });
+
+      // Cerrar modal haciendo clic fuera del video
       videoModal.addEventListener("click", (e) => {
         if (e.target === videoModal) {
-          videoMujer.pause();
           videoModal.style.display = "none";
+          videoMujer.pause();
+          videoVisto = true;
+          
+          // Mostrar siguiente frase
+          if (indiceFrase < frasesMujerTecman.length) {
+            fraseDinamica.textContent = frasesMujerTecman[indiceFrase];
+            indiceFrase++;
+          }
         }
       });
 
-      function mostrarBromaORegalo() {
-        if (intentos < frasesBroma.length - 1) {
-          btnMostrarRegalo.textContent = frasesBroma[intentos];
-          intentos++;
-        } else {
-          mensaje.style.display = "none";
-          regalo.style.display = "flex";
-        }
-      }
-
-      // Copiar código
-      window.copiarCodigo = function() {
-        const codigo = document.getElementById("codigoKey");
-        codigo.select();
-        codigo.setSelectionRange(0, 99999);
-        navigator.clipboard.writeText(codigo.value).then(() => {
-          alert("💜 ¡Felicidades! Has canjeado tu detalle. Eres increíble. 💚");
-        });
+      // Precarga de la foto de Tecman
+      const fotoTecmanImg = document.getElementById('fotoTecmanImg');
+      fotoTecmanImg.onerror = function() {
+        this.src = 'https://via.placeholder.com/600x400/aa80ff/ffffff?text=MUJERES+TECMAN';
       };
+
+      // Verificar que el archivo de música existe (solo para depuración)
+      console.log("🎵 Archivo de música configurado: musica-tc.mp3");
+      console.log("🎵 Volumen configurado:", VOLUMEN_MUSICA);
     });
   </script>
 </body>
