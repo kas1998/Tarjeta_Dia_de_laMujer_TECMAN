@@ -171,31 +171,26 @@
     }
 
     #mensajeFinal {
-      max-width: 500px;
+      /* CAMBIO CLAVE: Usa fit-content para que el ancho se ajuste al texto */
+      width: fit-content; 
+      max-width: 90%; /* Evita que choque con los bordes en celulares */
+      
+      /* CAMBIO CLAVE: Elimina altos fijos para que se ajuste al contenido */
+      height: auto; 
+
+      /* OPCIONAL: Reduce el padding si quieres que el borde esté más pegado a la frase */
+      padding: 20px 25px; 
+
+      /* Mantén el resto de tus estilos igual */
       background: rgba(20, 10, 30, 0.8);
       backdrop-filter: blur(5px);
       border-radius: 40px;
-      padding: 40px 30px;
       box-shadow: 0 0 25px #b8e0b8;
       display: flex;
       flex-direction: column;
       align-items: center;
       border: 2px solid #d4af37;
-    }
-
-    #mensajeFinal p {
-      font-size: 2.2rem;
-      margin-bottom: 25px;
-      color: #f5e6d3;
-      text-align: center;
-      font-weight: 600;
-      line-height: 1.4;
-    }
-
-    #mensajeFinal p:last-child {
-      color: #d4af37;
-      font-size: 2.5rem;
-      font-weight: 700;
+      margin: 0 auto; /* Para mantenerlo centrado si es necesario */
     }
 
     /* Video Modal */
@@ -402,9 +397,8 @@
         <img src="TECMAN-FOTO.jpg" alt="Mujeres Tecman" class="imagen-tecman" id="fotoTecmanImg" onerror="this.src='https://via.placeholder.com/600x400/aa80ff/ffffff?text=MUJERES+TECMAN'">
         <div id="mensajeFinal">
           <p>🌸💜🌸</p>
-          <p>GRACIAS</p>
-          <p>a todas las mujeres<br>de Tecman</p>
-          <p>por su talento,<br>dedicación y fuerza</p>
+          <p>GRACIAS..</p>
+          <p>A todas las mujeres de Tecman por su talento,dedicación y fuerza</p>
           <p>💚💜💚</p>
         </div>
       </div>
